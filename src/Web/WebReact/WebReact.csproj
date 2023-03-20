@@ -1,0 +1,225 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <SpaProxyServerUrl>https://localhost:44479</SpaProxyServerUrl>
+    <SpaProxyLaunchCommand>yarn start</SpaProxyLaunchCommand>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>f041491c-2d0b-4f9c-8a00-76a13a29346d</UserSecretsId>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.ApplicationInsights.Kubernetes" Version="3.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.3" />
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
+		<PackageReference Include="AspNetCore.HealthChecks.Uris" Version="6.0.3" />
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0-beta1" />
+		<PackageReference Include="Microsoft.ApplicationInsights.DependencyCollector" Version="2.22.0-beta1" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="7.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="7.0.3" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.1.1-dev-00896" />
+		<PackageReference Include="Serilog.Sinks.Seq" Version="5.2.3-dev-00260" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="7.0.3" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\apple-touch-icon.png" />
+    <Content Remove="wwwroot\asset-manifest.json" />
+    <Content Remove="wwwroot\demo\grid\autoload.php" />
+    <Content Remove="wwwroot\demo\grid\default.php" />
+    <Content Remove="wwwroot\demo\grid\news.php" />
+    <Content Remove="wwwroot\demo\grid\shares.php" />
+    <Content Remove="wwwroot\favicon.png" />
+    <Content Remove="wwwroot\images\people\a1.jpg" />
+    <Content Remove="wwwroot\images\people\a2.jpg" />
+    <Content Remove="wwwroot\images\people\a3.jpg" />
+    <Content Remove="wwwroot\images\people\a4.jpg" />
+    <Content Remove="wwwroot\images\people\a5.jpg" />
+    <Content Remove="wwwroot\images\people\a6.jpg" />
+    <Content Remove="wwwroot\index.html" />
+    <Content Remove="wwwroot\manifest.json" />
+    <Content Remove="wwwroot\service-worker.js" />
+    <Content Remove="wwwroot\static\css\2.133fd7ea.chunk.css" />
+    <Content Remove="wwwroot\static\css\2.133fd7ea.chunk.css.map" />
+    <Content Remove="wwwroot\static\css\main.b948f7df.chunk.css" />
+    <Content Remove="wwwroot\static\css\main.b948f7df.chunk.css.map" />
+    <Content Remove="wwwroot\static\js\2.131facfa.chunk.js" />
+    <Content Remove="wwwroot\static\js\2.641ed2c6.chunk.js" />
+    <Content Remove="wwwroot\static\js\3.46c42634.chunk.js" />
+    <Content Remove="wwwroot\static\js\3.f070abed.chunk.js" />
+    <Content Remove="wwwroot\static\js\4.d0d54241.chunk.js" />
+    <Content Remove="wwwroot\static\js\4.d62ec958.chunk.js" />
+    <Content Remove="wwwroot\static\js\5.99090578.chunk.js" />
+    <Content Remove="wwwroot\static\js\5.9de74e5c.chunk.js" />
+    <Content Remove="wwwroot\static\js\main.344e8793.chunk.js" />
+    <Content Remove="wwwroot\static\js\main.db127200.chunk.js" />
+    <Content Remove="wwwroot\static\js\main.e20e44ef.chunk.js" />
+    <Content Remove="wwwroot\static\js\runtime~main.1e94cdc0.js" />
+    <Content Remove="wwwroot\static\js\runtime~main.1f5ded82.js" />
+    <Content Remove="wwwroot\static\media\1.png" />
+    <Content Remove="wwwroot\static\media\2.png" />
+    <Content Remove="wwwroot\static\media\3.png" />
+    <Content Remove="wwwroot\static\media\4.png" />
+    <Content Remove="wwwroot\static\media\5.png" />
+    <Content Remove="wwwroot\static\media\a1.jpg" />
+    <Content Remove="wwwroot\static\media\a2.jpg" />
+    <Content Remove="wwwroot\static\media\a3.jpg" />
+    <Content Remove="wwwroot\static\media\a4.jpg" />
+    <Content Remove="wwwroot\static\media\a5.jpg" />
+    <Content Remove="wwwroot\static\media\a6.jpg" />
+    <Content Remove="wwwroot\static\media\a7.jpg" />
+    <Content Remove="wwwroot\static\media\Flaticon.686496bc.svg" />
+    <Content Remove="wwwroot\static\media\Flaticon.76ed06ab.woff" />
+    <Content Remove="wwwroot\static\media\Flaticon.90bc8831.ttf" />
+    <Content Remove="wwwroot\static\media\Flaticon.96850e10.eot" />
+    <Content Remove="wwwroot\static\media\fontawesome-webfont.674f50d2.eot" />
+    <Content Remove="wwwroot\static\media\fontawesome-webfont.acf3dcb7.svg" />
+    <Content Remove="wwwroot\static\media\fontawesome-webfont.af7ae505.woff2" />
+    <Content Remove="wwwroot\static\media\fontawesome-webfont.b06871f2.ttf" />
+    <Content Remove="wwwroot\static\media\fontawesome-webfont.fee66e71.woff" />
+    <Content Remove="wwwroot\static\media\glyphicons-halflings-regular.448c34a5.woff2" />
+    <Content Remove="wwwroot\static\media\glyphicons-halflings-regular.d41d8cd9.ttf" />
+    <Content Remove="wwwroot\static\media\glyphicons-halflings-regular.f4769f9b.eot" />
+    <Content Remove="wwwroot\static\media\glyphicons-halflings-regular.f7214668.svg" />
+    <Content Remove="wwwroot\static\media\glyphicons-halflings-regular.fa277232.woff" />
+    <Content Remove="wwwroot\static\media\la-brands-400.54b0b4e7.woff2" />
+    <Content Remove="wwwroot\static\media\la-brands-400.9769d0a6.svg" />
+    <Content Remove="wwwroot\static\media\la-brands-400.a38ca9f0.eot" />
+    <Content Remove="wwwroot\static\media\la-brands-400.bbf83f8b.ttf" />
+    <Content Remove="wwwroot\static\media\la-brands-400.fb598c9c.woff" />
+    <Content Remove="wwwroot\static\media\la-regular-400.2746742c.eot" />
+    <Content Remove="wwwroot\static\media\la-regular-400.338f6f87.woff" />
+    <Content Remove="wwwroot\static\media\la-regular-400.55c57a74.svg" />
+    <Content Remove="wwwroot\static\media\la-regular-400.87dab6ff.ttf" />
+    <Content Remove="wwwroot\static\media\la-regular-400.88d9d941.woff2" />
+    <Content Remove="wwwroot\static\media\la-solid-900.36fc2979.woff2" />
+    <Content Remove="wwwroot\static\media\la-solid-900.79be4e9f.svg" />
+    <Content Remove="wwwroot\static\media\la-solid-900.87292218.woff" />
+    <Content Remove="wwwroot\static\media\la-solid-900.8c65fd3e.eot" />
+    <Content Remove="wwwroot\static\media\la-solid-900.bb49393b.ttf" />
+    <Content Remove="wwwroot\workbox-6ac7f038.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\apple-touch-icon.png" />
+    <None Include="wwwroot\asset-manifest.json" />
+    <None Include="wwwroot\demo\grid\autoload.php" />
+    <None Include="wwwroot\demo\grid\default.php" />
+    <None Include="wwwroot\demo\grid\news.php" />
+    <None Include="wwwroot\demo\grid\shares.php" />
+    <None Include="wwwroot\favicon.png" />
+    <None Include="wwwroot\images\people\a1.jpg" />
+    <None Include="wwwroot\images\people\a2.jpg" />
+    <None Include="wwwroot\images\people\a3.jpg" />
+    <None Include="wwwroot\images\people\a4.jpg" />
+    <None Include="wwwroot\images\people\a5.jpg" />
+    <None Include="wwwroot\images\people\a6.jpg" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\manifest.json" />
+    <None Include="wwwroot\service-worker.js" />
+    <None Include="wwwroot\static\css\2.133fd7ea.chunk.css" />
+    <None Include="wwwroot\static\css\2.133fd7ea.chunk.css.map" />
+    <None Include="wwwroot\static\css\main.b948f7df.chunk.css" />
+    <None Include="wwwroot\static\css\main.b948f7df.chunk.css.map" />
+    <None Include="wwwroot\static\js\2.131facfa.chunk.js" />
+    <None Include="wwwroot\static\js\2.641ed2c6.chunk.js" />
+    <None Include="wwwroot\static\js\3.46c42634.chunk.js" />
+    <None Include="wwwroot\static\js\3.f070abed.chunk.js" />
+    <None Include="wwwroot\static\js\4.d0d54241.chunk.js" />
+    <None Include="wwwroot\static\js\4.d62ec958.chunk.js" />
+    <None Include="wwwroot\static\js\5.99090578.chunk.js" />
+    <None Include="wwwroot\static\js\5.9de74e5c.chunk.js" />
+    <None Include="wwwroot\static\js\main.344e8793.chunk.js" />
+    <None Include="wwwroot\static\js\main.db127200.chunk.js" />
+    <None Include="wwwroot\static\js\main.e20e44ef.chunk.js" />
+    <None Include="wwwroot\static\js\runtime~main.1e94cdc0.js" />
+    <None Include="wwwroot\static\js\runtime~main.1f5ded82.js" />
+    <None Include="wwwroot\static\media\1.png" />
+    <None Include="wwwroot\static\media\2.png" />
+    <None Include="wwwroot\static\media\3.png" />
+    <None Include="wwwroot\static\media\4.png" />
+    <None Include="wwwroot\static\media\5.png" />
+    <None Include="wwwroot\static\media\a1.jpg" />
+    <None Include="wwwroot\static\media\a2.jpg" />
+    <None Include="wwwroot\static\media\a3.jpg" />
+    <None Include="wwwroot\static\media\a4.jpg" />
+    <None Include="wwwroot\static\media\a5.jpg" />
+    <None Include="wwwroot\static\media\a6.jpg" />
+    <None Include="wwwroot\static\media\a7.jpg" />
+    <None Include="wwwroot\static\media\Flaticon.686496bc.svg" />
+    <None Include="wwwroot\static\media\Flaticon.76ed06ab.woff" />
+    <None Include="wwwroot\static\media\Flaticon.90bc8831.ttf" />
+    <None Include="wwwroot\static\media\Flaticon.96850e10.eot" />
+    <None Include="wwwroot\static\media\fontawesome-webfont.674f50d2.eot" />
+    <None Include="wwwroot\static\media\fontawesome-webfont.acf3dcb7.svg" />
+    <None Include="wwwroot\static\media\fontawesome-webfont.af7ae505.woff2" />
+    <None Include="wwwroot\static\media\fontawesome-webfont.b06871f2.ttf" />
+    <None Include="wwwroot\static\media\fontawesome-webfont.fee66e71.woff" />
+    <None Include="wwwroot\static\media\glyphicons-halflings-regular.448c34a5.woff2" />
+    <None Include="wwwroot\static\media\glyphicons-halflings-regular.d41d8cd9.ttf" />
+    <None Include="wwwroot\static\media\glyphicons-halflings-regular.f4769f9b.eot" />
+    <None Include="wwwroot\static\media\glyphicons-halflings-regular.f7214668.svg" />
+    <None Include="wwwroot\static\media\glyphicons-halflings-regular.fa277232.woff" />
+    <None Include="wwwroot\static\media\la-brands-400.54b0b4e7.woff2" />
+    <None Include="wwwroot\static\media\la-brands-400.9769d0a6.svg" />
+    <None Include="wwwroot\static\media\la-brands-400.a38ca9f0.eot" />
+    <None Include="wwwroot\static\media\la-brands-400.bbf83f8b.ttf" />
+    <None Include="wwwroot\static\media\la-brands-400.fb598c9c.woff" />
+    <None Include="wwwroot\static\media\la-regular-400.2746742c.eot" />
+    <None Include="wwwroot\static\media\la-regular-400.338f6f87.woff" />
+    <None Include="wwwroot\static\media\la-regular-400.55c57a74.svg" />
+    <None Include="wwwroot\static\media\la-regular-400.87dab6ff.ttf" />
+    <None Include="wwwroot\static\media\la-regular-400.88d9d941.woff2" />
+    <None Include="wwwroot\static\media\la-solid-900.36fc2979.woff2" />
+    <None Include="wwwroot\static\media\la-solid-900.79be4e9f.svg" />
+    <None Include="wwwroot\static\media\la-solid-900.87292218.woff" />
+    <None Include="wwwroot\static\media\la-solid-900.8c65fd3e.eot" />
+    <None Include="wwwroot\static\media\la-solid-900.bb49393b.ttf" />
+    <None Include="wwwroot\workbox-6ac7f038.js" />
+  </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+	  <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+	  <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)build\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
+		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+</Project>

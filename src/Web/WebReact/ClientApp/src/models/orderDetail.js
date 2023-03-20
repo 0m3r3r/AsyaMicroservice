@@ -1,0 +1,25 @@
+export class OrderDetail{
+    constructor(ordernumber,
+        status,
+        description,
+        street,
+        date,
+        city,
+        state,
+        zipcode,
+        country,
+        total,
+        orderitems){
+            this.ordernumber=ordernumber
+            this.status=status
+            this.description=description
+            this.street=street
+            this.date=date
+            this.city=city
+            this.state=state
+            this.zipcode=zipcode
+            this.country=country
+            this.total=total
+            this.orderitems=orderitems
+        }
+}

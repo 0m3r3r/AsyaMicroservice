@@ -1,0 +1,21 @@
+export class CatalogItem{
+    constructor(id,
+        name,
+        description,
+        price,
+        pictureUri,
+        catalogBrandId,
+        catalogBrand,
+        catalogTypeId,
+        catalogType,
+        units){
+            this.name=name
+            this.description=description
+            this.price=price
+            this.pictureUri=pictureUri
+            this.catalogBrandId=catalogBrandId
+            this.catalogBrand=catalogBrand
+            this.catalogTypeId=catalogTypeId
+            this.catalogType=catalogType
+        }
+}

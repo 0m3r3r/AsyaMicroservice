@@ -1,0 +1,43 @@
+{
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "/swagger",
+      "environmentVariables": {
+        "ConnectionString": "Host=localhost;Port=5432;Database=AsyaOrderManagement.Services.CatalogDb;Username=postgres;Password=asya123*;",
+        "Serilog:LogstashgUrl": "http://locahost:8080",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EventBusConnection": "localhost",
+        "Serilog:SeqServerUrl": "http://locahost:5340"
+      }
+    },
+    "Microsoft.eShopOnContainers.Services.Catalog.API": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:55101/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5000/"
+    },
+    "Azure Dev Spaces": {
+      "commandName": "AzureDevSpaces",
+      "launchBrowser": true
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:57424/",
+      "sslPort": 0
+    }
+  }
+}

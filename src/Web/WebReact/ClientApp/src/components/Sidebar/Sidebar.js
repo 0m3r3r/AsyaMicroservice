@@ -12,8 +12,7 @@ import {changeActiveSidebarItem} from '../../actions/navigation';
 import {logoutUser} from '../../actions/user';
 import HomeIcon from '../Icons/SidebarIcons/HomeIcon';
 import TypographyIcon from '../Icons/SidebarIcons/TypographyIcon';
-import TablesIcon from '../Icons/SidebarIcons/TablesIcon';
-import NotificationsIcon from '../Icons/SidebarIcons/NotificationsIcon';
+import TablesIcon from '../Icons/SidebarIcons/TablesIcon'
 import ComponentsIcon from '../Icons/SidebarIcons/ComponentsIcon';
 
 
@@ -70,7 +69,6 @@ class Sidebar extends React.Component {
     }
 
     render() {
-        console.log("active", this.props.activeItem)
         return (
             <nav
                 className={cx(s.root)}
@@ -106,13 +104,13 @@ class Sidebar extends React.Component {
                                 header: 'Siparişler', link: '/app/order/showorder',
                             },
                             {
-                                header: 'Satın Alım', link: '/app/components/icons',
+                                header: 'Satın Alım', link: '/app/order/showpurchase',
                             },
                             {
                                 header: 'Müşteriler' ,link :"/app/customer/showcustomer",
                             },
                             {
-                                header: 'Depo' ,link :"/app/warehouse/showitem",
+                                header: 'Depo' ,link :"/app/depo/showitem",
                             },
                         ]}
                     />

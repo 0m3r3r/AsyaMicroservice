@@ -1,6 +1,6 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM node:14.16.0
+FROM node:14.21.3
 
 WORKDIR /webui
 COPY package.json /var/www/package.json

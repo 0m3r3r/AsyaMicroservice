@@ -1,3 +1,4 @@
+import { stat } from "fs-extra";
 import React from "react";
 import { toast } from "react-toastify";
 import {
@@ -13,88 +14,82 @@ import {
 } from "reactstrap";
 import Widget from "../../components/Widget";
 
-export default class CustomerShow extends React.Component {
+export default class ItemShow extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      customer: [
+      item: [
         {
-          INTERNAL_REFERENCE: 9,
-          ACCOUNT_TYPE: 3,
-          CODE: "120 A009",
-          TITLE: "AYGÜL OFSET MATBAA LTD.ŞTİ.",
-          AUXIL_CODE: "A",
-          ADDRESS1: "MİTHATPAŞA CAD.NO:59/A",
-          ADDRESS2: "KIZILAY",
-          TOWN_CODE: 7,
-          TOWN: "Çankaya",
-          CITY_CODE: 6,
-          CITY: "Ankara",
-          COUNTRY_CODE: "TR",
-          COUNTRY: "Türkiye",
-          TELEPHONE1: "431 03 75",
-          TELEPHONE1_CODE: 0.312,
-          TELEPHONE2: "588 24 88",
-          TELEPHONE2_CODE: 0.532,
-          FAX: "431 79 83",
-          FAX_CODE: 0.312,
-          TAX_ID: 1200012678,
-          TAX_OFFICE: "ÇANKAYA",
-          CONTACT: "MUSTAFA AYGÜL",
-          E_MAIL: "aygulofset@gmail.com",
-          REMINDER_EMAIL: "aygulofset@gmail.com",
-          CORRESP_LANG: 1,
-          DATA_REFERENCE: 51,
+          INTERNAL_REFERENCE: 3827,
+          CARD_TYPE: 1,
+          CODE: "355070-K",
+          NAME: "TERMO DERİ GÜNLÜK ÇİZGİLİ AJANDA",
+          USEF_PURCHASING: 1,
+          USEF_SALES: 1,
+          USEF_MM: 1,
+          VAT: 18,
+          AUTOINCSL: 1,
+          LOTS_DIVISIBLE: 1,
+          UNITSET_CODE: 5,
           CREATED_BY: 3,
-          DATE_CREATED: "26.02.2014",
-          HOUR_CREATED: 16,
-          MIN_CREATED: 5,
-          SEC_CREATED: 54,
-          MODIFIED_BY: 13,
-          DATE_MODIFIED: "01.07.2021",
-          HOUR_MODIFIED: 10,
-          MIN_MODIFIED: 34,
-          SEC_MODIFIED: 45,
-          NOTES: {
-            NOTE: {
-              INTERNAL_REFERENCE: 0,
-            },
+          DATE_CREATED: "05.10.2018",
+          HOUR_CREATED: 14,
+          MIN_CREATED: 59,
+          SEC_CREATED: 55,
+          DATA_REFERENCE: 3827,
+          DIST_LOT_UNITS: 1,
+          COMB_LOT_UNITS: 1,
+          FACTORY_PARAMS: "",
+          WH_PARAMS: "",
+          CHARACTERISTICS: "",
+          DOMINANT_CLASSES: "",
+          UNITS: {
+            UNIT: [
+              {
+                UNIT_CODE: "ADET",
+                USEF_MTRLCLASS: 1,
+                USEF_PURCHCLAS: 1,
+                USEF_SALESCLAS: 1,
+                CONV_FACT1: 1,
+                CONV_FACT2: 1,
+                DATA_REFERENCE: 3741,
+                INTERNAL_REFERENCE: 3741,
+                BARCODE_LIST: "",
+              },
+            ],
           },
-          CREDIT_TYPE: 1,
-          RISKFACT_CHQ: 1,
-          RISKFACT_PROMNT: 1,
-          GL_CODE: "120.A009",
-          ORD_SEND_EMAIL: "aygulofset@gmail.com",
-          DSP_SEND_EMAIL: "aygulofset@gmail.com",
-          INV_SEND_EMAIL: "aygulofset@gmail.com",
-          CL_ORD_FREQ: 1,
-          ITR_SEND_MAIL_ADR: "aygulofset@gmail.com",
-          INVOICE_PRNT_CNT: 1,
+
+          GL_LINKS: "...",
+          SUPPLIERS: "...",
+          EXT_ACC_FLAGS: 3,
+          MULTI_ADD_TAX: 0,
+          PACKET: 0,
+          SELVAT: 18,
+          RETURNVAT: 18,
+          SELPRVAT: 18,
+          RETURNPRVAT: 18,
+          EXTCRD_FLAGS: 63,
           GENIUSFLDSLIST: "",
           DEFNFLDSLIST: "",
           ORGLOGOID: "",
-          PURCHBRWS: 1,
-          SALESBRWS: 1,
-          IMPBRWS: 1,
-          EXPBRWS: 1,
-          FINBRWS: 1,
-          ACC_RISK_TOTAL: -20000,
-          EXT_SEND_EMAIL: "aygulofset@gmail.com",
-          FACTORY_DIV_NR: 1,
-          CREATE_WH_FICHE: 1,
-          EXIM_SEND_EMAILADR: "aygulofset@gmail.com",
-          GUID: "DFE7A17F-FCB4-47EC-ADC1-D1336FCB1733",
+          UPDATECHILDS: 1,
+          SALE_DEDUCTION_PART1: 2,
+          SALE_DEDUCTION_PART2: 3,
+          PURCH_DEDUCTION_PART1: 2,
+          PURCH_DEDUCTION_PART2: 3,
+          ALTERNATIVES: "...",
+          LABEL_LIST: "",
+          GUID: "C1E9EBDD-FDE9-43CC-92D1-4A5D6B14176F",
         },
       ],
       modal: false,
       activeIndex: 0,
-      filteredCustomers: [],
+      filteredItems: [],
     };
-    this.state.filteredCustomers=this.state.customer
+    this.state.filteredItems=this.state.item
     this.handleModal = this.handleModal.bind(this);
     this.handleSearch=this.handleSearch.bind(this);
-
   }
   handleModal(activeIndex) {
     this.setState({ [activeIndex]: activeIndex });
@@ -103,59 +98,56 @@ export default class CustomerShow extends React.Component {
     });
   }
 
+
+
   handleSearch(event){
     if (event.target.value==="") {
-      this.setState({filteredCustomers:this.state.customer})
+      this.setState({filteredItems:this.state.item})
     } else {
-      this.setState({filteredCustomers:this.state.customer.filter(customer=>customer.TITLE.toLowerCase().includes(event.target.value.toLowerCase()))})
+      this.setState({filteredItems:this.state.item.filter(item=>item.CODE.toLowerCase().includes(event.target.value.toLowerCase()))})
     }
   }
 
   render() {
     return (
-      <Widget title={<h6>Müşteriler</h6>} refresh>
+      <Widget title={<h6>Ürünler</h6>} refresh>
         <Row>
-        <Col>Ünvan</Col>
           <Col>Kodu</Col>
-          <Col>Adres</Col> {/*ADDRESS1+ADDRESS2+TOWN+CİTY*/}
-          <Col>Vergi numarası</Col>
-          <Col>İskonto</Col>
+          <Col>Açıklaması</Col>
+          <Col>Adet</Col> {/*Bu bilgide yok acaba başka tabloda mı?*/}
+          <Col>Kdv</Col>
         </Row>
         <div className="widget-body undo_padding">
           <div className="list-group list-group-lg">
-            {this.state.filteredCustomers.map((customer, index) => (
+            {this.state.filteredItems.map((item, index) => (
               <button
                 className="list-group-item text-left"
                 onClick={() => {
                   this.handleModal(index);
                 }}
+                key={index}
               >
                 <div>
                   <Row>
-                  <Col>
+                    <Col>
+                      <h6 className="m-0">{item.CODE} </h6>
+                    </Col>
+                    <Col>
                       <p className="help-block text-ellipsis m-0">
-                        {customer.TITLE}
+                        {item.NAME}
                       </p>
                     </Col>
                     <Col>
-                      <h6 className="m-0">{customer.CODE} </h6>
+                      <p className="help-block text-ellipsis m-0">
+                        {item.UNITS.UNIT[0].DATA_REFERENCE}
+                      </p>
+                    </Col>
+                    <Col>
+                      <p className="help-block text-ellipsis m-0">
+                        {item.VAT}
+                      </p>
                     </Col>
                     
-                    <Col>
-                      <p className="help-block text-ellipsis m-0">
-                        {customer.ADDRESS1 + customer.ADDRESS2 + customer.CITY}
-                      </p>
-                    </Col>
-                    <Col>
-                      <p className="help-block text-ellipsis m-0">
-                        {customer.TAX_ID}
-                      </p>
-                    </Col>
-                    <Col>
-                      <p className="help-block text-ellipsis m-0">
-                        {customer.AUXIL_CODE}
-                      </p>
-                    </Col>
                   </Row>
                 </div>
               </button>
@@ -163,7 +155,7 @@ export default class CustomerShow extends React.Component {
           </div>
         </div>
         <div>
-          <Modal isOpen={this.state.modal} toggle={this.handleModal}>
+          {/* <Modal isOpen={this.state.modal} toggle={this.handleModal}>
             <ModalHeader toggle={this.handleModal}>
               {this.state.customer[this.state.activeIndex].TITLE}
             </ModalHeader>
@@ -195,28 +187,26 @@ export default class CustomerShow extends React.Component {
                   </Col>
                   <Col>
                     <ListGroupItem>
-                    {this.state.customer[this.state.activeIndex].ADDRESS1 +
-                    " " +
-                    this.state.customer[this.state.activeIndex].ADDRESS2 +
-                    " " +
-                    this.state.customer[this.state.activeIndex].TOWN +
-                    " " +
-                    this.state.customer[this.state.activeIndex].CITY}
+                      {this.state.customer[this.state.activeIndex].ADDRESS1 +
+                        " " +
+                        this.state.customer[this.state.activeIndex].ADDRESS2 +
+                        " " +
+                        this.state.customer[this.state.activeIndex].TOWN +
+                        " " +
+                        this.state.customer[this.state.activeIndex].CITY}
                     </ListGroupItem>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                    <ListGroupItem>
-                    Telefon 1
-                  
-                    </ListGroupItem>
+                    <ListGroupItem>Telefon 1</ListGroupItem>
                   </Col>
                   <Col>
                     <ListGroupItem>
-                    {this.state.customer[this.state.activeIndex].TELEPHONE1_CODE +
-                    " " +
-                    this.state.customer[this.state.activeIndex].TELEPHONE1}
+                      {this.state.customer[this.state.activeIndex]
+                        .TELEPHONE1_CODE +
+                        " " +
+                        this.state.customer[this.state.activeIndex].TELEPHONE1}
                     </ListGroupItem>
                   </Col>
                 </Row>
@@ -226,12 +216,10 @@ export default class CustomerShow extends React.Component {
                   </Col>
                   <Col>
                     <ListGroupItem>
-
-                  {this.state.customer[this.state.activeIndex].TELEPHONE2_CODE +
-                    " " +
-                    this.state.customer[this.state.activeIndex].TELEPHONE2}
-
-
+                      {this.state.customer[this.state.activeIndex]
+                        .TELEPHONE2_CODE +
+                        " " +
+                        this.state.customer[this.state.activeIndex].TELEPHONE2}
                     </ListGroupItem>
                   </Col>
                 </Row>
@@ -241,15 +229,13 @@ export default class CustomerShow extends React.Component {
                   </Col>
                   <Col>
                     <ListGroupItem>
-                    {this.state.customer[this.state.activeIndex].CONTACT}
+                      {this.state.customer[this.state.activeIndex].CONTACT}
                     </ListGroupItem>
                   </Col>
                 </Row>
-                
-         
               </ListGroup>
             </ModalBody>
-          </Modal>
+          </Modal> */}
         </div>
         <footer className="bg-widget-transparent mt">
           <input
@@ -257,7 +243,6 @@ export default class CustomerShow extends React.Component {
             className="form-control form-control-sm bg-custom-dark border-0"
             placeholder="Search"
             onChange={this.handleSearch}
-
           />
         </footer>
       </Widget>

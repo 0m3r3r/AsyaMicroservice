@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, Redirect, Link } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Alert, Button, FormGroup, Label, InputGroup, InputGroupAddon, Input, InputGroupText } from 'reactstrap';
 import Widget from '../../components/Widget';
-import { loginUser,loginError } from '../../actions/user';
-
+import { loginUser } from '../../actions/user';
 
 class Login extends React.Component {
     static propTypes = {
@@ -20,47 +19,29 @@ class Login extends React.Component {
         super(props);
 
         this.state = {
-            email: '5445118371',
+            mobilePhone: '5445118371',
             password: '12345',
-            rememberMe: true,
-            returnUrl: ""
         };
 
         this.doLogin = this.doLogin.bind(this);
-        this.changeEmail = this.changeEmail.bind(this);
+        this.changeMobilePhone = this.changeMobilePhone.bind(this);
         this.changePassword = this.changePassword.bind(this);
-        this.changeRememberMe=this.changeRememberMe.bind(this);
-        this.changeReturnUrl=this.changeReturnUrl.bind(this);
         // this.signUp = this.signUp.bind(this);
     }
 
-    changeEmail(event) {
-        this.setState({ email: event.target.value });
+    changeMobilePhone(event) {
+        this.setState({ mobilePhone: event.target.value });
     }
 
     changePassword(event) {
         this.setState({ password: event.target.value });
     }
-    changeRememberMe(event) {
-        this.setState({ rememberMe: event.target.value });
-    }
-    changeReturnUrl(event) {
-        this.setState({ returnUrl: event.target.value });
-    }
 
     doLogin(e) {
         e.preventDefault();
-        this.props.dispatch(loginUser({ email: this.state.email, password: this.state.password,rememberMe:this.state.rememberMe,returnUrl:this.state.returnUrl }));
+        this.props.dispatch(loginUser({ mobilePhone: this.state.mobilePhone, password: this.state.password }));
 
-        localStorage.setItem('authenticated', true)
-
-        // let authService= new AuthService()
-        // authService.login(this.state).then((result)=>{
-        //     localStorage.setItem('authenticated', true)   //
-        //     localStorage.setItem('user', result.data.data)
-        // }).catch(()=>{
-        //     this.props.dispatch(loginError('Something was wrong. Try again'));
-        // })
+    
     }
 
     // signUp() {
@@ -93,15 +74,15 @@ class Login extends React.Component {
                                 )
                             }
                             <FormGroup className="mt">
-                                <Label for="email">Email</Label>
+                                <Label for="mobilePhone">Telefon Numarası</Label>
                                 <InputGroup className="input-group-no-border">
                                     <InputGroupAddon addonType="prepend">
                                         <InputGroupText>
                                             <i className="la la-user text-white"/>
                                         </InputGroupText>
                                     </InputGroupAddon>
-                                    <Input id="email" className="input-transparent pl-3" value={this.state.email} onChange={this.changeEmail} type="email"
-                                           required name="emaik" placeholder="@"/>
+                                    <Input id="mobilePhone" className="input-transparent pl-3" value={this.state.mobilePhone} onChange={this.changeMobilePhone} type="number"
+                                           required name="mobilePhone" placeholder="5xxxxxxxxx"/>
                                 </InputGroup>
                             </FormGroup>
                             <FormGroup>
@@ -115,20 +96,6 @@ class Login extends React.Component {
                                     <Input id="password" className="input-transparent pl-3" value={this.state.password}
                                            onChange={this.changePassword} type="password"
                                            required name="password" placeholder="Password"/>
-                                </InputGroup>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="rememberMe">Beni Hatırla</Label>
-                                <InputGroup className="input-group-no-border">
-                                    <InputGroupAddon addonType="prepend">
-                                        <InputGroupText>
-                                            <i className="la la-lock text-white"/>
-                                        </InputGroupText>
-                                    </InputGroupAddon>
-                                    <Input id="rememberMe" className="input-transparent pl-3" value={this.state.password}
-                                           onChange={this.changeRememberMe} type="checkbox"
-                                           required name="rememberMe"/>
-                                           Beni Hatırla
                                 </InputGroup>
                             </FormGroup>
                             <div className="bg-widget auth-widget-footer" style={{paddingBottom: 8}}>

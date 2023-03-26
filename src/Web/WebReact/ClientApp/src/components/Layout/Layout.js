@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter, Redirect } from 'react-router';
+import { Switch,  withRouter, Redirect } from 'react-router';
+import {  Route } from 'react-router-dom';
+
+
+
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Hammer from 'rc-hammerjs';
 
@@ -15,13 +19,17 @@ import Dashboard from '../../pages/dashboard';
 
 import Header from '../Header';
 import Sidebar from '../Sidebar';
-import BreadcrumbHistory from '../BreadcrumbHistory';
 import { openSidebar, closeSidebar } from '../../actions/navigation';
 import s from './Layout.module.scss';
-import UsersShow from '../../pages/user/UsersShow';
-import UserCreate from '../../pages/user/UserCreate';
+
 import CustomerShow from "../../pages/customer/CustomerShow"
-import CustomerCreate from '../../pages/customer/CustomerCreate';
+import OrderCreate from '../../pages/order/OrderCreate';
+import { OrderDetail } from '../../pages/order/OrderDetail';
+import { OrderShow } from '../../pages/order/OrderShow';
+import ItemShow from '../../pages/item/ItemShow';
+import PurchaseShow from './../../pages/purchase/PurchaseShow';
+
+
 
 class Layout extends React.Component {
   static propTypes = {
@@ -73,7 +81,7 @@ class Layout extends React.Component {
           <Sidebar />
           <Hammer onSwipe={this.handleSwipe}>
             <main className={s.content}>
-              <BreadcrumbHistory url={this.props.location.pathname} />
+              
               <TransitionGroup>
                 <CSSTransition
                   key={this.props.location.key}
@@ -88,26 +96,27 @@ class Layout extends React.Component {
                     <Route path="/app/components/charts" exact component={Charts} />
                     <Route path="/app/tables" exact component={TablesStatic} />
                     <Route path="/app/muhasebe" exact component={TablesStatic} />
-                    <Route path="/app/depo" exact component={UINotifications} />
+                    
                     <Route path="/app/siparis" exact component={UINotifications} />
                     <Route path="/app/components/maps" exact component={MapsGoogle} />
                     <Route path="/app/typography" exact component={CoreTypography} />
 
-
-                    <Route path='/app/user/showuser' exact component={UsersShow} />
-                    <Route path='/app/user/createuser' exact component={UserCreate} />
+                    <Route path="/app/depo/showpurchase" exact component={PurchaseShow} />
+                    <Route path="/app/depo/showitem" exact component={ItemShow} />
                     <Route path="/app/customer/showcustomer" exact component={CustomerShow} />
-                    <Route path="/app/customer/createcustomer" exact component={CustomerCreate} />
-                    <Route path='/app/order/showorder' exact component={UsersShow} />
-                    
-                    <Route path="/app/warehouse/showitem" exact component={UsersShow} />
+                      <Route path="/app/order/createorder"  component={OrderCreate} />
+                      <Route path="/app/order/showorder" component={OrderShow} />
+                    <Route path="/app/order/detailorder" component={OrderDetail}  />
 
                   </Switch>
+                  
                 </CSSTransition>
               </TransitionGroup>
-              <footer className={s.contentFooter}>
-                Asya Promosyon React Template - React admin template made by <a href="https://flatlogic.com" >Flatlogic</a>
-              </footer>
+
+     
+
+
+              
             </main>
           </Hammer>
         </div>
